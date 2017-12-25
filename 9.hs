@@ -16,11 +16,10 @@ cleanStream' Garbage (x:xs)
 
 cleanStream' IgnoreNextChar (x:xs) = cleanStream' Garbage xs
 
-computeSum = computeSum' 1
+computeSum = snd . foldl computeSum' (1, 0)
 
-computeSum' l [] = 0
-computeSum' l ('{':xs) = l + computeSum' (l+1) xs
-computeSum' l ('}':xs) = computeSum' (l-1) xs
+computeSum' (l, v) '{' = (l + 1, v + l)
+computeSum' (l, v) '}' = (l - 1, v)
 
 solveA inputFile = do
     input <- readFile inputFile
@@ -55,7 +54,7 @@ countGarbage2' (Garbage,        v) '!'  = (IgnoreNextChar, v)
 countGarbage2' (Garbage,        v)  _   = (Garbage,        v + 1)
 countGarbage2' (IgnoreNextChar, v)  _   = (Garbage,        v)
 
-countGarbage2 = foldl countGarbage2' (Normal, 0)
+countGarbage2 = snd . foldl countGarbage2' (Normal, 0)
 
 solveB2 inputFile = do
     input <- readFile inputFile
