@@ -1,9 +1,0 @@
-GHCi, version 8.2.1: http://www.haskell.org/ghc/  :? for help
-Prelude> :load 7.hs
-[1 of 1] Compiling Main             ( 7.hs, interpreted )
-Ok, 1 module loaded.
-*Main> words "pbga (66)"
-["pbga","(66)"]
-*Main> words "fwft (72) -> ktlj, cntj, xhth"
-["fwft","(72)","->","ktlj,","cntj,","xhth"]
-*Main> filter (/=)','
